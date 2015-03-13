@@ -1,19 +1,9 @@
-% This function reads in nifty file and determines the dimension
-% Input:
-% Full file name in string format
-% Output:
-% asl_4D_matrix: 4D matrix of ASL time series
-% dims: Dimension of the 4D matrix
-% scales: dummy variable, to be used in the future
+function [img,dims,scales,bpp,endian] = ra(fname)
 
-function [asl_4D_matrix, dims, scales] = ra(full_file_name)
+% [img, dims,scales,bpp,endian] = RA(fname)
+%
+% calls read_avw
 
-	scales = 0; % To be added
+global homedir;
 
-	file_handle = load_nii(full_file_name);
-	asl_4D_matrix = file_handle.img;
-	dims = size(input_4D_matrix);
-
-
-end
-
+[img,dims,scales,bpp,endian] = read_avw(fname);
