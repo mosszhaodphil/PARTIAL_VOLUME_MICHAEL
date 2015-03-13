@@ -26,7 +26,9 @@ for i=1:size(mask,1)
         for k=1:size(mask,3)
             if mask(i,j,k)>0
                 submask=mask(max(i-nsel,1):min(i+nsel,xsize),max(j-nsel,1):min(j+nsel,ysize),max(k-nzsel,1):min(k+nzsel,zsize));
-                if sum3(submask)>5
+                % calculate the sum of all elements in submask
+                if sum(sum(sum(submask)))
+                %if sum3(submask)>5
                     subdata = vols2matrix(data(max(i-nsel,1):min(i+nsel,xsize),max(j-nsel,1):min(j+nsel,ysize),max(k-nzsel,1):min(k+nzsel,zsize),:),submask);
                     subpve = vols2matrix(pve(max(i-nsel,1):min(i+nsel,xsize),max(j-nsel,1):min(j+nsel,ysize),max(k-nzsel,1):min(k+nzsel,zsize),:),submask);
                     pveinv = pinv(subpve);
